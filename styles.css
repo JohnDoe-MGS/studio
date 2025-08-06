@@ -555,7 +555,7 @@ p {
         transform: translateX(0); /* Traz para a tela quando expandida */
     }
 
-    .app-sidebar:not(.expanded) {
+    .app-sidebar:not (.expanded) {
         /* Já está com transform: translateX(-220px); */
     }
 
@@ -574,33 +574,32 @@ p {
 
     .app-title-header {
         display: none; /* Oculta o título da aplicação no cabeçalho em mobile para economizar espaço */
-    }
+}
 
-     .sidebar-toggle-btn {
+    .sidebar-toggle-btn {
         margin-right: 0; /* Remove margem à direita do botão de toggle em mobile */
      }
 
-     .user-info {
-         margin-right: 1em; /* Ajusta margem em mobile */
-     }
+.user-info {
+margin-right: 1em; /* Ajusta margem em mobile */
+}
 
-     .user-name, .company-name {
+.user-name, .company-name {
          display: inline; /* Nome e empresa na mesma linha em mobile */
          font-size: 0.9em; /* Ajusta tamanho da fonte */
      }
 
-     .user-name:after {
+.user-name:after {
         content: " - "; /* Adiciona separador entre nome e empresa */
-     }
+}
 
-     .notification-icon,
-     .profile-icon {
-         margin-left: 0.8em; /* Ajusta margem em mobile */
-         font-size: 1.2em; /* Ajusta tamanho do ícone */
-     }
-
-     .profile-dropdown {
-          top: calc(var(--header-height) + 10px); /* Posiciona abaixo do cabeçalho em mobile */
+.notification-icon,
+.profile-icon {
+    margin-left: 0.8em; /* Ajusta margem em mobile */
+    font-size: 1.2em; /* Ajusta tamanho do ícone */
+}
+.profile-dropdown {
+top: calc(var(--header-height) + 10px); /* Posiciona abaixo do cabeçalho em mobile */
      }
 }
 
