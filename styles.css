@@ -1,0 +1,726 @@
+/* Estilos para o App Layout */
+.app-container {
+    display: flex;
+    flex-direction: column; /* Empilha cabeçalho, sidebar e conteúdo no layout mobile-first */
+    min-height: 100vh;
+    overflow-x: hidden; /* Evita rolagem horizontal */
+}
+
+.app-header {
+    background-color: #ffffff; /* Fundo branco para o cabeçalho */
+    color: var(--text-color);
+    padding: 0.8em 1.5em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    position: fixed; /* Cabeçalho fixo */
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Garante que o cabeçalho fique acima de outros elementos */
+    box-sizing: border-box; /* Inclui padding na largura total */
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-toggle-btn {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    margin-right: 1em;
+    color: var(--text-color);
+}
+
+.app-title-header {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--primary-color); /* Cor primária para o título */
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.user-info {
+    margin-right: 1.5em;
+    font-size: 0.9em;
+    text-align: right;
+}
+
+.user-name {
+    display: block; /* Nome em uma linha */
+    font-weight: bold;
+    color: var(--primary-color); /* Cor primária para o nome do usuário */
+}
+
+.company-name {
+    display: block; /* Empresa em outra linha */
+    font-size: 0.8em;
+    color: #666; /* Cor mais suave para o nome da empresa */
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+}
+
+.notification-icon,
+.profile-icon {
+    font-size: 1.3em;
+    margin-left: 1em;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.3s ease-in-out;
+}
+
+.notification-icon:hover,
+.profile-icon:hover {
+    color: var(--primary-color);
+}
+
+.profile-dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-dropdown {
+    position: absolute;
+    top: 100%; /* Posiciona abaixo do ícone */
+    right: 0; /* Alinha à direita */
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    min-width: 150px;
+    z-index: 1001;
+    display: none; /* Oculto por padrão */
+    flex-direction: column;
+    padding: 0.5em 0;
+}
+
+.profile-dropdown.show {
+    display: flex; /* Exibe quando a classe 'show' está presente */
+}
+
+.profile-dropdown a {
+    padding: 0.8em 1em;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: background-color 0.3s ease-in-out;
+}
+
+.profile-dropdown a:hover {
+    background-color: var(--background-color);
+}
+
+
+.app-sidebar {
+    background-color: #ffffff; /* Fundo branco para a barra lateral */
+    color: var(--text-color);
+    position: fixed; /* Barra lateral fixa */
+    top: 60px; /* Altura aproximada do cabeçalho */
+    left: 0;
+    height: calc(100% - 60px); /* Altura total menos a altura do cabeçalho */
+    overflow-y: auto; /* Permite rolagem se os itens excederem a altura */
+    padding-top: 1em;
+    transition: width 0.3s ease-in-out;
+    z-index: 999; /* Fica abaixo do cabeçalho */
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.05);
+}
+
+.app-sidebar.expanded {
+    width: 15%; /* Largura máxima expandida */
+    min-width: 180px; /* Largura mínima para texto legível */
+}
+
+.app-sidebar:not(.expanded) {
+    width: 60px; /* Largura retraída (apenas ícones) */
+    overflow-x: hidden; /* Oculta o texto quando retraído */
+}
+
+.app-sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.app-sidebar nav li {
+    margin-bottom: 0.5em;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    padding: 0.8em 1em;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.sidebar-link i {
+    font-size: 1.2em;
+    margin-right: 1em;
+}
+
+.sidebar-link:hover {
+    background-color: var(--background-color);
+    color: var(--primary-color);
+}
+
+.sidebar-text {
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.app-sidebar:not(.expanded) .sidebar-text {
+    opacity: 0; /* Oculta o texto quando retraído */
+    width: 0; /* Remove a largura para ajudar a esconder */
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+
+.app-content {
+    margin-top: 60px; /* Espaço para o cabeçalho fixo */
+    margin-left: 15%; /* Espaço para a barra lateral expandida */
+    padding: 1.5em;
+    flex-grow: 1; /* Permite que o conteúdo ocupe o espaço restante */
+    overflow-y: auto; /* Permite rolagem no conteúdo principal */
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.app-sidebar:not(.expanded) ~ .app-content {
+    margin-left: 60px; /* Ajusta a margem quando a barra lateral está retraída */
+}
+
+
+/* Responsividade */
+@media (max-width: 768px) { /* Ponto de interrupção para telas menores */
+    .app-sidebar.expanded {
+        width: 200px; /* Largura maior em telas menores para melhor usabilidade */
+        /* Pode ajustar conforme necessário */
+    }
+
+    .app-sidebar:not(.expanded) {
+        left: -60px; /* Move a barra lateral para fora da tela quando retraída */
+        /* Ajuste a largura se necessário */
+    }
+
+     .app-sidebar.expanded {
+        left: 0; /* Traz a barra lateral de volta para a tela quando expandida */
+     }
+
+    .app-content {
+        margin-left: 0; /* O conteúdo ocupa a largura total em telas pequenas */
+        padding-top: calc(60px + 1em); /* Adiciona padding extra no topo para evitar sobreposição */
+    }
+
+    .app-sidebar.expanded ~ .app-content {
+        margin-left: 0; /* Mantém a margem esquerda zero mesmo quando a sidebar está expandida em mobile */
+    }
+
+     /* Sobrepõe o conteúdo com um overlay escuro quando a sidebar está aberta em mobile */
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 998; /* Abaixo da sidebar e acima do conteúdo */
+        display: none; /* Oculto por padrão */
+    }
+
+    .overlay.show {
+        display: block; /* Exibe quando a classe 'show' está presente */
+    }
+}
+
+/* Ajustes finos para telas muito pequenas */
+@media (max-width: 480px) {
+    .app-header {
+        padding: 0.8em 1em;
+    }
+
+    .user-info {
+        margin-right: 0.5em;
+        font-size: 0.8em;
+    }
+
+     .user-name, .company-name {
+         display: inline; /* Nome e empresa na mesma linha em telas muito pequenas */
+     }
+
+    .user-name:after {
+        content: " - ";
+    }
+
+    .notification-icon,
+    .profile-icon {
+        font-size: 1.1em;
+        margin-left: 0.8em;
+    }
+}
+
+/* Estilos da Fase 1 (mantidos) */
+:root {
+    --primary-color: #1a5235; /* Verde floresta escuro */
+    --secondary-color: #0C7489;
+    --accent-color: #A5B481; /* Verde oliva */
+    --text-color: #333333;
+    --background-color: #F0F4F2; /* Verde suave */
+    --header-height: 60px; /* Definir altura do cabeçalho como variável */
+    --sidebar-width-expanded: 15%;
+    --sidebar-min-width-expanded: 180px; /* Garante que o texto seja legível */
+    --sidebar-width-collapsed: 60px;
+}
+
+html {
+    font-size: 16px; /* Base em rem */
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+    /* Removido display: flex, justify-content, align-items, min-height para layout de app */
+}
+
+h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 0.5em;
+}
+
+h1 {
+    font-size: clamp(2em, 5vw, 3em); /* Escala responsiva */
+}
+
+h2 {
+    font-size: clamp(1.5em, 4vw, 2.5em);
+}
+
+h3 {
+    font-size: clamp(1.2em, 3vw, 2em);
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+/* Estilos do formulário de login da Fase 1 (manter se necessário, ou mover para um arquivo separado) */
+/* .login-container, .login-box, .form-group, etc. */
+
+
+/* Estilos para o App Layout */
+.app-container {
+    display: flex;
+    /* Removido flex-direction: column; para o layout base (desktop-first com mobile adaptations) */
+    min-height: 100vh;
+    overflow-x: hidden; /* Evita rolagem horizontal */
+    padding-top: var(--header-height); /* Espaço no topo para o cabeçalho fixo */
+}
+
+.app-header {
+    background-color: #ffffff; /* Fundo branco para o cabeçalho */
+    color: var(--text-color);
+    padding: 0 1.5em; /* Ajuste o padding horizontal */
+    height: var(--header-height); /* Definir altura fixa */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    position: fixed; /* Cabeçalho fixo */
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Garante que o cabeçalho fique acima de outros elementos */
+    box-sizing: border-box; /* Inclui padding na largura total */
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-toggle-btn {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    margin-right: 1em;
+    color: var(--text-color);
+    padding: 0.5em; /* Adicionar padding para área de clique */
+}
+
+.app-title-header {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--primary-color); /* Cor primária para o título */
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.user-info {
+    margin-right: 1.5em;
+    font-size: 0.9em;
+    text-align: right;
+}
+
+.user-name {
+    display: block; /* Nome em uma linha */
+    font-weight: bold;
+    color: var(--primary-color); /* Cor primária para o nome do usuário */
+}
+
+.company-name {
+    display: block; /* Empresa em outra linha */
+    font-size: 0.8em;
+    color: #666; /* Cor mais suave para o nome da empresa */
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+}
+
+.notification-icon,
+.profile-icon {
+    font-size: 1.3em;
+    margin-left: 1em;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.3s ease-in-out;
+}
+
+.notification-icon:hover,
+.profile-icon:hover {
+    color: var(--primary-color);
+}
+
+.profile-dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-dropdown {
+    position: absolute;
+    top: calc(100% + 10px); /* Posiciona abaixo do ícone com um pequeno espaço */
+    right: 0; /* Alinha à direita */
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    min-width: 150px;
+    z-index: 1001;
+    display: none; /* Oculto por padrão */
+    flex-direction: column;
+    padding: 0.5em 0;
+}
+
+.profile-dropdown.show {
+    display: flex; /* Exibe quando a classe 'show' está presente */
+}
+
+.profile-dropdown a {
+    padding: 0.8em 1em;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: background-color 0.3s ease-in-out;
+}
+
+.profile-dropdown a:hover {
+    background-color: var(--background-color);
+}
+
+
+.app-sidebar {
+    background-color: #ffffff; /* Fundo branco para a barra lateral */
+    color: var(--text-color);
+    position: fixed; /* Barra lateral fixa */
+    top: var(--header-height); /* Começa abaixo do cabeçalho */
+    left: 0;
+    height: calc(100% - var(--header-height)); /* Altura total menos a altura do cabeçalho */
+    overflow-y: auto; /* Permite rolagem se os itens excederem a altura */
+    padding-top: 1em;
+    transition: width 0.3s ease-in-out, transform 0.3s ease-in-out; /* Adicionado transform para mobile */
+    z-index: 999; /* Fica abaixo do cabeçalho */
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.05);
+    white-space: nowrap; /* Impede que o texto da sidebar quebre em várias linhas */
+}
+
+.app-sidebar.expanded {
+    width: var(--sidebar-width-expanded);
+    min-width: var(--sidebar-min-width-expanded);
+}
+
+.app-sidebar:not(.expanded) {
+    width: var(--sidebar-width-collapsed); /* Largura retraída (apenas ícones) */
+}
+
+.app-sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.app-sidebar nav li {
+    margin-bottom: 0.5em;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    padding: 0.8em 1em;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    overflow: hidden; /* Oculta o texto que exceder a largura */
+}
+
+.sidebar-link i {
+    font-size: 1.2em;
+    margin-right: 1em;
+    flex-shrink: 0; /* Impede que o ícone encolha */
+}
+
+.sidebar-text {
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out, width 0.3s ease-in-out;
+     /* Removido width: 0; e overflow: hidden; do estado retraído para a transição */
+}
+
+.app-sidebar:not(.expanded) .sidebar-text {
+     opacity: 0; /* Oculta o texto quando retraído */
+}
+
+
+.app-content {
+    margin-top: var(--header-height); /* Espaço para o cabeçalho fixo */
+    margin-left: var(--sidebar-width-expanded); /* Espaço para a barra lateral expandida */
+    padding: 1.5em;
+    flex-grow: 1; /* Permite que o conteúdo ocupe o espaço restante */
+    overflow-y: auto; /* Permite rolagem no conteúdo principal */
+    transition: margin-left 0.3s ease-in-out;
+    width: 100%; /* Garante que ocupe a largura restante */
+    box-sizing: border-box; /* Inclui padding na largura */
+}
+
+.app-sidebar:not(.expanded) ~ .app-content {
+    margin-left: var(--sidebar-width-collapsed); /* Ajusta a margem quando a barra lateral está retraída */
+}
+
+/* Overlay para mobile */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 998; /* Abaixo da sidebar e acima do conteúdo */
+    display: none; /* Oculto por padrão */
+}
+
+.overlay.show {
+    display: block; /* Exibe quando a classe 'show' está presente */
+}
+
+
+/* Responsividade */
+@media (max-width: 768px) { /* Ponto de interrupção para telas menores (tablets e mobile) */
+    .app-container {
+        flex-direction: column; /* Empilha no layout mobile */
+        padding-top: var(--header-height); /* Mantém padding para o cabeçalho */
+    }
+
+     .app-sidebar {
+        width: 220px; /* Largura maior em telas menores para o estado expandido mobile */
+        left: 0; /* Posiciona no lado esquerdo */
+        transform: translateX(-220px); /* Move para fora da tela por padrão */
+        transition: transform 0.3s ease-in-out;
+        box-shadow: 4px 0 8px rgba(0, 0, 0, 0.1); /* Sombra mais pronunciada em mobile */
+    }
+
+    .app-sidebar.expanded {
+        transform: translateX(0); /* Traz para a tela quando expandida */
+    }
+
+    .app-sidebar:not(.expanded) {
+        /* Já está com transform: translateX(-220px); */
+    }
+
+
+    .app-content {
+        margin-left: 0; /* O conteúdo ocupa a largura total em telas pequenas */
+        width: 100%; /* Garante largura total */
+        padding-top: 1.5em; /* Padding no topo do conteúdo, abaixo do header fixo */
+    }
+
+    /* O conteúdo não precisa de ajuste de margem baseado no estado da sidebar em mobile,
+       pois a sidebar sobrepõe ou está fora da tela. */
+    .app-sidebar.expanded ~ .app-content {
+         margin-left: 0;
+    }
+
+    .app-title-header {
+        display: none; /* Oculta o título da aplicação no cabeçalho em mobile para economizar espaço */
+    }
+
+     .sidebar-toggle-btn {
+        margin-right: 0; /* Remove margem à direita do botão de toggle em mobile */
+     }
+
+     .user-info {
+         margin-right: 1em; /* Ajusta margem em mobile */
+     }
+
+     .user-name, .company-name {
+         display: inline; /* Nome e empresa na mesma linha em mobile */
+         font-size: 0.9em; /* Ajusta tamanho da fonte */
+     }
+
+     .user-name:after {
+        content: " - "; /* Adiciona separador entre nome e empresa */
+     }
+
+     .notification-icon,
+     .profile-icon {
+         margin-left: 0.8em; /* Ajusta margem em mobile */
+         font-size: 1.2em; /* Ajusta tamanho do ícone */
+     }
+
+     .profile-dropdown {
+          top: calc(var(--header-height) + 10px); /* Posiciona abaixo do cabeçalho em mobile */
+     }
+}
+
+/* Ajustes para telas muito pequenas (mobile vertical) */
+@media (max-width: 480px) {
+    .app-header {
+        padding: 0 1em; /* Reduz padding horizontal */
+    }
+
+     .user-info {
+         margin-right: 0.5em;
+     }
+
+     .user-name, .company-name {
+         font-size: 0.8em; /* Font menor em telas menores */
+     }
+     .notification-icon,
+     .profile-icon {
+         margin-left: 0.5em; /* Reduz margem dos ícones */
+         font-size: 1.1em;
+     }
+     /* Estilos para o Dashboard */
+.dashboard-container {
+    padding: 1.5em;
+}
+
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Layout responsivo de grid */
+    gap: 1.5em;
+    margin-bottom: 2em;
+}
+
+.metric-card {
+    background-color: #ffffff;
+    padding: 1.5em;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.metric-card h2 {
+    font-size: 1.1em;
+    color: #666;
+    margin-bottom: 0.5em;
+}
+
+.metric-card .metric-value {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.dashboard-charts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5em;
+}
+
+.chart-container {
+    background-color: #ffffff;
+    padding: 1.5em;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.chart-container h2 {
+    font-size: 1.2em;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+}/* Estilos para o Dashboard */
+.dashboard-container {
+    padding: 1.5em;
+}
+
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Layout responsivo de grid */
+    gap: 1.5em;
+    margin-bottom: 2em;
+}
+
+.metric-card {
+    background-color: #ffffff;
+    padding: 1.5em;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.metric-card h2 {
+    font-size: 1.1em;
+    color: #666;
+    margin-bottom: 0.5em;
+}
+
+.metric-card .metric-value {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.dashboard-charts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5em;
+}
+
+.chart-container {
+    background-color: #ffffff;
+    padding: 1.5em;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.chart-container h2 {
+    font-size: 1.2em;
+    margin-bottom: 1em;
+    text-align: center;
+}
+

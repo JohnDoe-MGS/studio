@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VERITAS - Sua ferramenta de conformidade completa</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Adicione aqui as bibliotecas de ícones. Usaremos Font Awesome como exemplo. -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="header-left">
+                <button id="sidebar-toggle" class="sidebar-toggle-btn" aria-label="Toggle sidebar">
+                    <i class="fas fa-bars"></i> <!-- Ícone de hambúrguer -->
+                </button>
+                <span class="app-title-header">VERITAS</span>
+            </div>
+            <div class="header-right">
+                <div class="user-info">
+                    <span class="user-name">John Doe</span>
+                    <span class="company-name">ACME Corp</span>
+                </div>
+                <div class="icons">
+                    <i class="fas fa-bell notification-icon" title="Notificações"></i> <!-- Ícone de notificação -->
+                    <div class="profile-dropdown-container">
+                         <i class="fas fa-user-circle profile-icon" id="profile-icon" title="Perfil"></i> <!-- Ícone de perfil -->
+                         <div class="profile-dropdown" id="profile-dropdown">
+                             <a href="#">Configurações</a>
+                             <a href="#" id="logout-link">Sair</a>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <aside class="app-sidebar expanded" id="app-sidebar">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="#dashboard" class="sidebar-link">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span class="sidebar-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                         <a href="#knowledge-center" class="sidebar-link">
+                            <i class="fas fa-book"></i>
+                            <span class="sidebar-text">Glossário & Frameworks</span>
+                        </a>
+                    </li>
+                    <li>
+                         <a href="#compliance-pillars" class="sidebar-link">
+                            <i class="fas fa-columns"></i>
+                            <span class="sidebar-text">Pilares do Compliance</span>
+                        </a>
+                    </li>
+                     <li>
+                         <a href="#risk-matrix" class="sidebar-link">
+                            <i class="fas fa-table"></i>
+                            <span class="sidebar-text">Matriz de Riscos</span>
+                        </a>
+                    </li>
+                    <li>
+                         <a href="#library" class="sidebar-link">
+                            <i class="fas fa-archive"></i>
+                            <span class="sidebar-text">Biblioteca</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#self-assessment" class="sidebar-link">
+                           <i class="fas fa-tasks"></i>
+                           <span class="sidebar-text">Autoavaliação</span>
+                       </a>
+                   </li>
+                   <li>
+                       <a href="#audit" class="sidebar-link">
+                          <i class="fas fa-clipboard-check"></i>
+                          <span class="sidebar-text">Auditoria</span>
+                      </a>
+                  </li>
+                    <!-- Adicione mais links de navegação aqui -->
+                </ul>
+            </nav>
+        </aside>
+
+         <!-- Overlay para mobile -->
+        <div class="overlay" id="overlay"></div>
+
+
+        <main class="app-content" id="app-content">
+            <!-- O conteúdo específico de cada página será carregado/exibido aqui -->
+            <div id="page-content">
+                <!-- Conteúdo para o Dashboard -->
+<div class="dashboard-container">
+    <h1>Dashboard Executivo</h1>
+    <p>Visão geral da postura de risco e compliance.</p>
+
+    <div class="dashboard-cards">
+        <div class="card metric-card">
+            <h2>Riscos Críticos Abertos</h2>
+            <p class="metric-value">12</p>
+        </div>
+        <div class="card metric-card">
+            <h2>Auditorias Pendentes</h2>
+            <p class="metric-value">5</p>
+        </div>
+        <div class="card metric-card">
+            <h2>Maturidade do Compliance</h2>
+            <p class="metric-value">75%</p>
+        </div>
+        <!-- Adicionar mais cards conforme necessário -->
+    </div>
+
+    <div class="dashboard-charts">
+        <div class="chart-container card">
+            <h2>Distribuição de Riscos por Categoria</h2>
+            <canvas id="riskDistributionChart"></canvas>
+        </div>
+        <div class="chart-container card">
+            <h2>Status dos Itens de Ação</h2>
+            <canvas id="actionItemStatusChart"></canvas>
+        </div>
+        <!-- Adicionar mais containers de gráficos conforme necessário -->
+    </div>
+</div>
+
+                 <h1>Bem-vindo ao Dashboard</h1>
+                 <p>Este é o espaço para o conteúdo principal da sua aplicação.</p>
+                 <!-- Conteúdo de exemplo para rolagem -->
+                 <div style="height: 150vh; background-color: #f9f9f9; padding: 20px; margin-top: 20px;">
+                      <h2>Conteúdo Rolável</h2>
+                      <p>Este é um placeholder para simular o conteúdo da página.</p>
+                      <p>A barra lateral e o cabeçalho devem permanecer fixos enquanto você rola aqui.</p>
+                 </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Firebase SDKs (mantenha ou adicione aqui se usados neste layout) -->
+    <!-- Exemplo (substitua pelos seus próprios): -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-app-compat.js"></script> -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-auth-compat.js"></script> -->
+    <!-- <script> -->
+    <!--   // Your web app's Firebase configuration -->
+    <!--   const firebaseConfig = { -->
+    <!--     apiKey: "YOUR_API_KEY", -->
+    <!--     authDomain: "YOUR_AUTH_DOMAIN", -->
+    <!--     projectId: "YOUR_PROJECT_ID", -->
+    <!--     storageBucket: "YOUR_STORAGE_BUCKET", -->
+    <!--     messagingSenderId: "YOUR_MESSAGING_SENDER_ID", -->
+    <!--     appId: "YOUR_APP_ID" -->
+    <!--   }; -->
+
+    <!--   // Initialize Firebase -->
+    <!--   firebase.initializeApp(firebaseConfig); -->
+    <!-- </script> -->
+
+    <script src="main.js"></script>
+</body>
+</html>
